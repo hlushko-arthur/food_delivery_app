@@ -1,0 +1,5 @@
+,
+    "lint": "eslint . --ext .ts",
+    "fix": "eslint . --ext .ts --fix",
+    "prepush": "npm run lint",
+    "prepare": "cd .. && husky install client/.husky"

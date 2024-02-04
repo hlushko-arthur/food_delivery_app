@@ -1,0 +1,96 @@
+<div class="wrapper" id="wrapper">
+	<nav class="nav" (clickOutside)="show = false">
+		<ul class="nav__ul container" [class._active]="show">
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="show = false"
+					routerLink="/profile"
+					class="nav__a"
+				>
+					<span class="material-icons">home</span>
+				</a>
+			</li>
+			<li class="nav__li _burger" (click)="showDesktop = !showDesktop">
+				<a
+					class="nav__toggle"
+					(click)="show=!show"
+					[class._active]="show"
+				>
+					<span class="nav__toggle-line"></span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="main" [class.showTable]="showDesktop">
+		<div class="fade" [@showInOut]="show" *ngIf="show"></div>
+		<div class="nav__burger _active" [class._active]="show">
+			<div class="nav__burger-list">
+				<div class="theme-switch">
+					<span
+						class="material-icons"
+						*ngIf="!us.mode"
+						(click)="us.set('dark')"
+					>
+						dark_mode
+					</span>
+					<span
+						class="material-icons"
+						*ngIf="us.mode"
+						(click)="us.set()"
+					>
+						light_mode
+					</span>
+				</div>
+				<a
+					class="nav__burger-link nav__burger-user"
+					routerLink="/profile"
+				>
+					<img
+						[src]="us.user.thumb || 'assets/default.png'"
+						alt="Profile Picture"
+						class="avatar__img"
+						height="50"
+						width="50"
+					/>
+					<div class="name">{{us.user.name || "Profile"}}</div>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/users"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="show = false"
+				>
+					<span class="material-icons">people</span>
+					<span translate>Theme.Users</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/forms"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="show = false"
+				>
+					<span class="material-icons">backup_table</span>
+					<span translate>Theme.Forms</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/translates"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="show = false"
+				>
+					<span class="material-icons">translate</span>
+					<span translate>Theme.Translates</span>
+				</a>
+			</div>
+		</div>
+		<router-outlet></router-outlet>
+	</div>
+</div>

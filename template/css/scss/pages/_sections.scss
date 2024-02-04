@@ -1,0 +1,226 @@
+@import "./variables";
+
+.body {
+    background-color: $body_color;
+}
+
+.container {
+    background-color: $body_color;
+    ;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $p5;
+    padding-left: $p5;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+
+section {
+    height: 100vh;
+}
+
+.waw_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waw_section h1 {
+    color: $yellow;
+    font-size: $fs4 * 4;
+}
+
+.section-container_text_img {
+    overflow: hidden;
+    color: $white;
+    font-size: $fs3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $p4;
+}
+
+.text-container_text_img {
+    padding-right: $p4;
+}
+
+// .illustration-container_text_img {
+//     position: relative;
+//     top: 20px;
+//     right: -150px;
+//     transition: right 0.5s ease-in-out;
+// }
+
+
+.moved-image {
+    position: relative;
+    right: -410px;
+    animation: moveImage 2s ease forwards;
+    /* Animation duration, timing function, and fill mode */
+}
+
+@keyframes moveImage {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-400px, -20px);
+    }
+}
+
+.illustration-container_text_img img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section-container_text_img button {
+    padding: $p2 $p4;
+    font-size: $fs2;
+    color: rgb(0, 0, 0);
+    background-color: $yellow;
+}
+
+.section-container_img_text {
+    color: $white;
+    font-size: 20px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $p4;
+}
+
+.text-container__img_text {
+    padding-right: $p4;
+}
+
+.illustration-container__img_text {
+    padding-left: $p4;
+}
+
+.section-container_img_text button {
+    padding: $p2 $p4;
+    font-size: $fs2;
+    color: black;
+    background-color: $yellow;
+}
+
+.forms {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form {
+    color: $white;
+    max-width: 400px;
+    margin: $m5 auto;
+    padding: $p4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: $m2;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: $p2;
+    margin-bottom: $m3;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.forms button {
+    padding: $p2 $p4;
+    font-size: $fs2;
+    color: $dark;
+    background-color: $yellow;
+    border-radius: 4px;
+}
+
+.block {
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 150px;
+}
+
+.plans {
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $p4;
+}
+
+.plan {
+    height: 350px;
+    text-align: center;
+    padding: $p4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.plan h3 {
+    color: $yellow;
+}
+
+.price {
+    font-size: $fs4;
+    margin-top: $m2;
+}
+
+.features {
+    margin-top: $m4;
+}
+
+.plan button {
+    margin-top: $m4;
+    padding: $p2 $p4;
+    font-size: $fs2;
+    background-color: $yellow;
+    color: $dark;
+    border: none;
+    border-radius: 4px;
+
+}
+
+.name {
+    padding: $p2;
+}

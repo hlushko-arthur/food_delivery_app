@@ -1,0 +1,14 @@
+.w-card {
+  position: relative;
+  background: var(--c-bg-secondary);
+  border-radius: var(--b-radius-card);
+  box-shadow: 0px 0px 6px var(--c-shadow);
+
+  &._pd {
+    padding: 20px;
+  }
+
+  &__header {
+    min-height: 60px;
+  }
+}

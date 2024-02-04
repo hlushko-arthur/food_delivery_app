@@ -1,0 +1,29 @@
+@import '/src/scss/utils/vars';
+@import 'angular';
+.w-forms {
+  position: relative;
+  margin: 0;
+
+  form-component {
+    margin-bottom: 20px;
+    display: block;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    letter-spacing: 0;
+    line-height: 23px;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--c-text-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: $b-radius;
+    margin: 0;
+    margin-bottom: 25px;
+  }
+}

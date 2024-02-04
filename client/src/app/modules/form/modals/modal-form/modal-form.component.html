@@ -1,0 +1,18 @@
+<wform
+	#formRef
+	[config]="form"
+	[submition]="submition"
+	(wSubmit)="set(formRef._values()); submit(formRef._values()); close()"
+	(wChange)="set(formRef._values()); change(formRef._values())"
+></wform>
+
+<div class="btn-action btn-action_w95p">
+	<wbutton
+		(click)="button.click(formRef._values(), close)"
+		*ngFor="let button of buttons"
+		[ngClass]="button.class"
+		class="w-btn _primary"
+	>
+		{{button.label}}
+	</wbutton>
+</div>

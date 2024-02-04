@@ -1,0 +1,7 @@
+<div class="w-card" [class._pd]="padding">
+	<img *ngIf="image" src="{{image}}" alt="" class="w-card__img">
+	<h1 *ngIf="title" class="w-card__title">{{title}}</h1>
+	<span *ngIf="subtitle" class="w-card__subtitle">{{subtitle}}</span>
+	<p *ngIf="text" class="w-card__text">{{text}}</p>
+	<ng-content></ng-content>
+</div>

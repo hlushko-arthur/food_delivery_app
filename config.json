@@ -1,0 +1,29 @@
+{
+	"name": "wawNgx",
+	"description": "Default waw project with Angular client and Template landing",
+	"image": "https://webart.work/template/img/spider.svg",
+	"keywords": "Default Project",
+	"license": "MIT",
+	"icon": "/client/src/favicon.ico",
+	"prefix": "wawNgx",
+	"port": 8080,
+	"session": true,
+	"mongo": {
+		"host": "127.0.0.1",
+		"port": 27017,
+		"db": "waw"
+	},
+	"modules": {
+		"template": "waw",
+		"core": "waw",
+		"sem": "waw",
+		"form":"waw",
+		"translate":"waw"
+	},
+	"dependencies": {},
+	"user": {
+		"is": {
+			"admin": "ceo@webart.work"
+		}
+	}
+}

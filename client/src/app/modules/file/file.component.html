@@ -1,0 +1,29 @@
+<div *ngIf="isPhoto" (click)="set()">
+	<h3>{{label}}</h3>
+	<label *ngIf="!multiple" for="formPhoto">
+		<img [src]="value || '/assets/default.png'" alt="Picture" />
+	</label>
+	<label *ngIf="multiple" for="formPhotos">Add</label>
+	<div *ngIf="multiple">
+		<div *ngFor="let file of files; index as i">
+			<img [src]="file" alt="Picture" />
+			<i (click)="files.splice(i, 1)">X</i>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="dataUrl">
+	<image-cropper
+		(imageCropped)="imageCropped($event)"
+		[maintainAspectRatio]="true"
+		[imageBase64]="dataUrl"
+		[aspectRatio]="1"
+		output="base64"
+		format="png"
+		[cropperStaticWidth]="width"
+		[cropperStaticHeight]="height"
+	></image-cropper>
+
+
+	<button (click)="uploadImage()">Cropper</button>
+</div>

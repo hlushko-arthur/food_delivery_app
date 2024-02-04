@@ -1,0 +1,43 @@
+<div class="container">
+	<wcard [padding]="true">
+		<div class="profile__header w-card__header">
+			<div>
+				<div class="avatar _profile">
+					<img
+						[src]="us.user.thumb || 'assets/default.png'"
+						class="avatar__img"
+						width="50"
+						height="50"
+						alt="User Avatar"
+					/>
+					<label class="avatar__upload" for="userAvatarUrl">
+						<i class="material-icons avatar__icon">edit</i>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="profile__body">
+			<wform
+				*ngIf="user"
+				(wChange)="update($event)"
+				[config]="formProfile"
+				[submition]="user"
+			></wform>
+
+			<div class="profile__footer">
+				<div class="profile__logout">
+					<wbutton (click)="us.logout()" type="danger">
+						<span class="material-icons">logout</span>
+						<span translate>Profile.Logout</span>
+					</wbutton>
+				</div>
+
+				<div class="profile__password">
+					<wbutton (click)="change_password()" type="link" translate>
+						Profile.Change Password
+					</wbutton>
+				</div>
+			</div>
+		</div>
+	</wcard>
+</div>

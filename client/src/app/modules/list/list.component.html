@@ -1,0 +1,7 @@
+<div class="scroll-box" #container (scroll)="scroll($event)">
+	<ng-container *ngFor="let item of items.slice(0, limit)">
+		<ng-container
+			*ngTemplateOutlet="action.template; context: {$implicit: item}"
+		></ng-container>
+	</ng-container>
+</div>

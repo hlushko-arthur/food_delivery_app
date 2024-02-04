@@ -1,0 +1,19 @@
+{
+	"title": "Welcome to waw Template",
+	"description": "description",
+	"keywords": "keywords",
+	"prefix": "/template",
+	"picture": "picture",
+	"author": "author",
+	"moderators": [],
+	"scss": "scss/index.scss",
+	"variables": {
+		"primary_color": "#e0dc10"
+	},
+	"fields": [
+		{
+			"name": "background",
+			"default": "red"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+@import '/src/scss/utils/vars';
+  
+
+@import 'angular';
+.w-card {
+  position: relative;
+  background: var(--c-bg-secondary);
+  border-radius: $b-radius-card;
+  box-shadow: 0px 0px 6px var(--c-shadow);
+
+  &._pd {
+    padding: 20px;
+  }
+
+  &__header {
+    min-height: 60px;
+  }
+}

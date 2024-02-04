@@ -1,0 +1,64 @@
+@import '/src/scss/utils/vars';
+@import 'angular';
+
+.container-box{
+    position: relative;
+    display: flex;
+}
+.container-box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+   }
+.checkmark {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: rgb(15 53 61 / 6%);
+    border-radius: 50%;
+    transition: all 0.3s;
+   }
+
+   .container-box:hover input~.checkmark {
+    background-color: #0f353d60;
+   }
+   .container-box input:checked~.checkmark {
+    background-color: var(--c-primary);
+   }
+   .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+   }
+   .checkmark:before {
+    content: "";
+    position: absolute;
+    display: none;
+   }
+   .container-box input:checked~.checkmark:after {
+    display: block;
+   }
+   .container-box input:checked~.checkmark:before {
+    display: block;
+   }
+   .container-box .checkmark:after {
+    left: 6px;
+    top: 46%;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg) translate(-50%, -50%);
+   }
+   .check{
+    max-width: 100px;
+   }
+   .checkmark-text{
+    margin-left: 28px;
+    display: block;
+   }

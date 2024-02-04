@@ -1,0 +1,33 @@
+@import '/src/scss/utils/vars';
+@import 'angular';
+.w-card {
+  background: var(--c-bg-secondary);
+  border-radius: $b-radius-card;
+  position: relative;
+  // box-shadow: 0px 0px 6px var(--c-shadow);
+  &._pd {
+    padding: 20px;
+  }
+  &._align {
+    text-align: center;
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  &__subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  &__text {
+    font-size: 14px;
+  }
+  &__img {
+    width: 100%;
+  }
+  @media (max-width: 991.9px) {
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,25 @@
+// ===== BASE STYLE =====
+@import '/src/scss/utils/vars';
+html {
+    font-size: $fs;
+    overflow: hidden;
+    height: 100%;
+}
+body {
+    font-family: $ff-base;
+    color: var(--c-text-primary);
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+/* === PAGE LAYOUT === */
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: $padding;
+    max-width: 100%;
+    width: 100%;
+}

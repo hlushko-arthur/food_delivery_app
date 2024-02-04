@@ -1,0 +1,240 @@
+<div class="wtable">
+	<div class="users__header w-card__header" *ngIf="title">
+		<h3 class="w-forms__title">{{title}}</h3>
+		<ng-container *ngIf="config.headerButtons">
+			<ng-container *ngFor="let button of config.headerButtons">
+				<wbutton (click)="button.click()" class="table-plus-btn" *ngIf="config.create" type="button">
+					<i
+						class="material-icons"
+						[title]="button.icon"
+						*ngIf="button.icon"
+					>
+						{{button.icon}}
+					</i>
+					<span *ngIf="button.text">{{button.text}}</span>
+				</wbutton>
+			</ng-container>
+		</ng-container>
+		<wbutton
+			(click)="config.create()"
+			class="table-plus-btn"
+			*ngIf="config.create"
+			type="button"
+		>
+			+ <span>Add new</span>
+		</wbutton>
+	</div>
+	<div class="table-flex _jc-sb _ai-c">
+		<div
+			*ngIf="config.searchable"
+			class="table-search"
+			[class.table-search--active]="searchShow"
+		>
+			<div
+				class="table-search__icon"
+				(click)="searchShow=!searchShow"
+			></div>
+			<input
+				(ngModelChange)="onSearch.emit($event)"
+				[(ngModel)]="searching_text"
+				class="table-search__input"
+				placeholder="Search..."
+				type="text"
+			/>
+		</div>
+	</div>
+	<table class="table" cellpadding="0" cellspacing="0">
+		<thead class="table-header">
+			<tr>
+				<th *ngIf="config.num">No.</th>
+				<th scope="col" *ngFor="let column of columns">
+					<div
+						[class._sortActiveDown]="sort_type.direction === 'desc' && column.field === sort_type.title"
+						[class._sortActiveUp]="sort_type.direction === 'asc' && column.field === sort_type.title"
+						class="table-header__sort"
+						(click)="sort(column)"
+					>
+						<span>{{column.title}}</span>
+						<span
+							*ngIf="sortable[column.field]"
+							class="material-icons icon-arrow"
+						>
+							keyboard_backspace
+						</span>
+					</div>
+				</th>
+				<th *ngIf="config.delete||config.update">
+					<ng-template #customAction>
+						<ng-container
+							*ngTemplateOutlet="action.template"
+						></ng-container>
+					</ng-template>
+					<ng-template #defaultAction>Actions</ng-template>
+					<ng-container
+						*ngIf="action; then customAction; else defaultAction"
+					></ng-container>
+				</th>
+			</tr>
+		</thead>
+		<tbody class="table-body">
+			<tr
+				*ngFor="let row of rows|search: searching_text: (config.searchBy||'title')|page: config: sort_type index as i;"
+			>
+				<td *ngIf="config.num">{{row.num}}</td>
+				<ng-container *ngFor="let column of columns">
+					<ng-template #defaultRows>
+						<td [attr.data-label]="column.title + ':&nbsp;'">
+							{{row[column.field]}}
+						</td>
+					</ng-template>
+					<ng-template #customRows>
+						<td [attr.data-label]="column.title + ':&nbsp;'">
+							<ng-container
+								*ngTemplateOutlet="custom_cell[column.field]; context: {$implicit: row}"
+							></ng-container>
+						</td>
+					</ng-template>
+					<ng-container
+						*ngIf="custom_cell[column.field]; then customRows; else defaultRows"
+					></ng-container>
+				</ng-container>
+				<td
+					class="table-body__last-td"
+					*ngIf="config.delete || config.update || config.buttons"
+					data-label="Actions:&nbsp;"
+				>
+				<div class="table__actions">
+					<ng-container *ngIf="config.buttons">
+						<ng-container *ngFor="let button of config.buttons">
+							<i
+								(click)="button.click(row)"
+								class="material-icons"
+								[title]="button.icon"
+								*ngIf="!button.href && !button.hrefFunc"
+							>
+								{{button.icon}}
+							</i>
+							<a routerLink="{{button.href}}" *ngIf="button.href">
+								<i
+									class="material-icons"
+									[title]="button.icon"
+								>
+									{{button.icon}}
+								</i>
+							</a>
+							<a routerLink="{{button.hrefFunc(row)}}" *ngIf="button.hrefFunc">
+								<i
+									class="material-icons"
+									[title]="button.icon"
+								>
+									{{button.icon}}
+								</i>
+							</a>
+						</ng-container>
+					</ng-container>
+
+					<i
+						class="material-icons"
+						*ngIf="config.update"
+						(click)="config.update(row)"
+						title="Edit"
+					>
+						edit
+					</i>
+					<i
+						class="material-icons"
+						*ngIf="config.delete"
+						(click)="config.delete(row)"
+						title="Delete"
+					>
+						delete_outline
+					</i>
+				</div>
+
+				</td>
+			</tr>
+		</tbody>
+		<tfoot
+			class="table-footer"
+			*ngIf="config.perPage || (config.formCreate && config.create)"
+		>
+			<!-- <button
+				*ngIf="config.create"
+				class="table-plus-btn"
+				(click)="config.create()"
+			>
+				+
+			</button> -->
+			<div class="item-page" *ngIf="config.perPage">
+				<div class="item-page__text">Showing items per page</div>
+				<div
+					class="item-page__dropdown"
+					(clickOutside)="select_page_size = false"
+					[class.open]="select_page_size"
+				>
+					<div
+						class="caption"
+						(click)="select_page_size = !select_page_size"
+					>
+						{{config.perPage}}
+					</div>
+					<div class="list">
+						<div
+							class="item"
+							*ngFor="let row of config.pageSizeOptions"
+						>
+							<div
+								[class.selected]="row === config.perPage"
+								(click)="changePerPage(row)"
+							>
+								{{row}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item-page__result">
+					<span>
+						{{((config.page-1)*config.perPage)+1}} -
+						{{config.page*config.perPage >
+						rows?.length&&rows?.length||config.page*config.perPage}}
+					</span>
+					<span> of </span>
+					<span>
+						{{(rows | search: searching_text:
+						(config.searchBy||'title'))?.length}}
+					</span>
+				</div>
+			</div>
+			<div class="table-footer__pagination" *ngIf="config.perPage">
+				<wbutton
+					class="table-footer__arrow _start"
+					[disabled]="config.page === 1"
+					(click)="config.page = 1"
+				>
+					<i class="chevron"></i>
+				</wbutton>
+				<wbutton
+					class="table-footer__arrow _left"
+					[disabled]="config.page === 1"
+					(click)="previous()"
+				>
+					<i class="chevron"></i>
+				</wbutton>
+				<wbutton
+					[disabled]="config.page*config.perPage > rows?.length"
+					class="table-footer__arrow _right"
+					(click)="next()"
+				>
+					<i class="chevron"></i>
+				</wbutton>
+				<wbutton
+					class="table-footer__arrow _end"
+					[disabled]="isLast()"
+					(click)="lastPage()"
+				>
+					<i class="chevron"></i>
+				</wbutton>
+			</div>
+		</tfoot>
+	</table>
+</div>
